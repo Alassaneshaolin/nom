@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Les formulaires</title>
+        <meta charset="utf-8">
+            
+        <style>
+            label{display: inline-block;}
+            form{background-color: silver;}
+            label {position: relative;left: 20px; width: 100px;}
+            #prenom{width: 300px;}
+            #nom{width: 300px;}
+            #mail{width: 300px;}
+            #message{width: 300px;}
+            .form{position: relative;width: 600px;top: 30px;left: 30%;}
+            #bouton_annuler{position: relative; left: 30px;top:-20px;}
+            #bouton_envoi{position: relative;left: 400px;}
+            body h1{position: relative;text-align: center;}
+            body p{position: relative;left: 180px;}
+            form span{position: relative;left: 75%;top: -20px;}
+
+        </style>
+    </head>
+    
+    <body>
+        <h1>Vous pouvez me laisser un message</h1>
+        
+        <form class="form" method="post" action="traitement.php">
+
+
+    <p>
+      Homme:<input class="control" type="radio" name="genre" required="">
+      Femme:<input class="control" type="radio" name="genre" required="">
+    </p>
+            <label for='prenom'>Prénom: </label>
+            <input type='text' name='prenom' id='prenom' maxlength='30' required><br>
+            <span id='missPrenom'></span><br>
+
+            <label for='nom'>Nom: </label>
+            <input type='text' name='nom' id='nom' maxlength='10' required><br>
+            <span id='missNom'></span><br>
+            
+            <label for='mail'>E-mail : </label>
+            <input type='email' name='mail' id='mail' required><br>
+            <span id='missMail'></span><br>
+            
+
+            <label for="message">Message :</label>
+            <textarea cols="20" rows="10" name="message" id="message" required=""></textarea><br><br>
+                
+            <input type='submit' value='Valider' id='bouton_envoi'>
+            <br>
+            <input type="reset" value="Annuler" onclick='window.location.reload(true)' value="Rafraichir"id="bouton_annuler">
+        </form>
+        
+        <script>
+            var formValid = document.getElementById('bouton_envoi');
+            var prenom = document.getElementById('prenom');
+            var missPrenom = document.getElementById('missPrenom');
+            var nom = document.getElementById('nom');
+            var missNom = document.getElementById('missNom');
+            var mail = document.getElementById('mail');
+            var missMail = document.getElementById('missMail');
+            
+            formValid.addEventListener('click', validation);
+            
+            function validation(event){
+                //Si le champ est vide
+                if (prenom.validity.valueMissing){
+                    event.preventDefault();
+                    missPrenom.textContent = 'Prénom manquant';
+                    missPrenom.style.color = 'red';
+
+                }
+                else{
+
+                }
+                if (nom.validity.valueMissing){
+                    event.preventDefault();
+                    missNom.textContent = 'Nom manquant'; 
+                    missNom.style.color = 'red';
+                }
+                else{
+
+                }
+                if (mail.validity.valueMissing){
+                    event.preventDefault();
+                    missMail.textContent = 'E-mail manquant';
+                    missMail.style.color = 'red';
+                }
+                else{
+                    alert('message envoyer');
+                }
+            }
+        </script>
+    </body>
+</html>
+
